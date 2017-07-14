@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fun.personalUse.mainAlbumTunesApp.AlbumTunesController">
+   <children>
+      <TabPane prefHeight="729.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Songs">
+            <content>
+              <AnchorPane fx:id="MediaPlayerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="709.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="addPlaylistButton" layoutX="11.0" layoutY="160.0" mnemonicParsing="false" onAction="#addPlaylistButtonListener" text="+ Add Playlist" />
+                        <TableView fx:id="playlistTable" layoutY="193.0" onKeyPressed="#onDeletePlaylist" onMouseClicked="#displayPlaylistButtonListener" prefHeight="501.0" prefWidth="152.0">
+                          <columns>
+                            <TableColumn fx:id="playlistColumn" prefWidth="151.0" style="border: black;" styleClass="border" text="Playlists" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="metaDataTable" layoutX="155.0" layoutY="193.0" onKeyPressed="#onDeleteSong" onMouseClicked="#playSelectedSong" onSort="#onTableSort" prefHeight="501.0" prefWidth="636.0">
+                          <columns>
+                            <TableColumn fx:id="songNameCol" prefWidth="225.0" text="Song Name" />
+                            <TableColumn fx:id="artistCol" prefWidth="198.0" text="Artist" />
+                              <TableColumn fx:id="albumCol" prefWidth="135.0" text="Album" />
+                              <TableColumn fx:id="durationCol" prefWidth="76.0" text="Duration" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="addSongsToPlaylistButton" layoutX="137.0" layoutY="160.0" mnemonicParsing="false" onAction="#addSongsToPlaylistButtonListener" text="Add Songs To Playlist" />
+                        <Label layoutX="11.0" layoutY="98.0" prefHeight="53.0" prefWidth="228.0" text="*First highlight the playlist you want to add to, then highlight the songs you want to move, then click this button to move them" textFill="#f50303" wrapText="true" />
+                        <Label fx:id="mediaDescLeft" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="49.0" prefHeight="42.0" prefWidth="372.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="WHITE" spread="0.85" />
+                           </effect>
+                        </Label>
+                        <Label layoutX="249.0" layoutY="3.0" text="Media Player 5000">
+                           <font>
+                              <Font name="Broadway" size="29.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="WHITE" spread="0.85" />
+                           </effect>
+                        </Label>
+                        <Button fx:id="nextButton" layoutX="698.0" layoutY="131.0" mnemonicParsing="false" onAction="#nextSongButtonListener" prefHeight="25.0" prefWidth="57.0" text="&gt;&gt;" textFill="#3c00ff">
+                           <effect>
+                              <InnerShadow choke="0.4" color="WHITE" />
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <CheckBox fx:id="shuffleBox" layoutX="296.0" layoutY="164.0" mnemonicParsing="false" onAction="#onShuffleSelected" text="Shuffle?">
+                           <effect>
+                              <DropShadow color="WHITE" spread="0.85" />
+                           </effect>
+                        </CheckBox>
+                        <Button fx:id="restartAlbumButton" alignment="CENTER" layoutX="306.0" layoutY="106.0" mnemonicParsing="false" onAction="#restartAlbumButtonListener" text="Restart" textFill="#1500ff">
+                           <effect>
+                              <InnerShadow choke="0.8" color="#fffefe" />
+                           </effect>
+                        </Button>
+                        <Button fx:id="playBackButton" layoutX="625.0" layoutY="106.0" mnemonicParsing="false" onAction="#executePlayback" prefHeight="17.0" prefWidth="61.0" text="Play" textFill="#00b21b">
+                           <effect>
+                              <InnerShadow choke="0.4" color="WHITE" />
+                           </effect>
+                        </Button>
+                        <TextField fx:id="searchBox" layoutX="409.0" layoutY="160.0" onAction="#onPlaylistSearch" promptText="Search" />
+                        <Button fx:id="mineMP3sButton" layoutX="576.0" layoutY="160.0" mnemonicParsing="false" onAction="#mineMP3sButtonListener" text="Mine for mp3s" />
+                        <Label fx:id="digLabel" layoutX="677.0" layoutY="160.0" prefHeight="25.0" prefWidth="118.0" wrapText="true">
+                           <effect>
+                              <DropShadow color="WHITE" height="18.04" radius="7.7775" spread="0.84" width="15.07" />
+                           </effect>
+                        </Label>
+                        <ScrollBar fx:id="songScrollBar" layoutX="314.0" layoutY="136.0" prefHeight="14.0" prefWidth="372.0" />
+                        <Label fx:id="currentSongTime" alignment="CENTER" layoutX="473.0" layoutY="110.0" prefHeight="17.0" prefWidth="54.0" textFill="#f8f6f6">
+                           <effect>
+                              <DropShadow spread="0.58" />
+                           </effect></Label>
+                        <Button fx:id="backButton" layoutX="249.0" layoutY="131.0" mnemonicParsing="false" onAction="#backButtonListener" prefHeight="25.0" prefWidth="52.0" text="&lt;&lt;" textFill="#f80303">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow choke="0.4" color="#fffefe" />
+                           </effect>
+                        </Button>
+                        <Label fx:id="mediaDescRight" layoutX="404.0" layoutY="48.0" prefHeight="44.0" prefWidth="361.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="#f8f6f6" spread="0.85" />
+                           </effect>
+                        </Label>
+                        <MenuBar>
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#closeMenuListener" text="Close" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Edit">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#preferencesMenuListener" text="Preferences" />
+                                 </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Video">
+            <content>
+              <AnchorPane fx:id="AlbumPlayerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="695.0">
+                     <children>
+                        <Button fx:id="launchButton" layoutX="324.0" layoutY="206.0" mnemonicParsing="false" onAction="#launchButtonListener" prefHeight="42.0" prefWidth="159.0" text="Launch Video Player" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
